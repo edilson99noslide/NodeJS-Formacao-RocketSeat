@@ -51,6 +51,21 @@ Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 * Writable Streams envia aos poucos um vídeo, uma música (escrita)
 * Transformable Streams que lê um arquivo e escreve (transformação)
 
+<h3>Buffers</h3>
+* É uma representação de um espaço na memória do computador usado para transitar dados de uma maneira muito rápida, pois ele lê o dado
+de forma binária, essa maneira é mais rápida do que uma string
+* São representados por dados hexadecimais, se você criar uma variável buffer com o valor de 
+"Olá!" o console.log() irá retornar a classe Buffer e o valor em hexadecimal
+* Converter um buff para JSON irá retornar um decimal
+```js
+const buf = Buffer.from("Olá!");
+
+console.log(buf); 
+
+// retorna <Buffer 4f 6c c3 a1>
+// Buffer é a classe e cada elemento é a representação do caractere em hexadecial (base 123456789ABCDEF)
+```
+
 <h3>Síncrono e Assíncrono</h3>
 
 * Async: Garante que uma função será assíncrona, ou seja, não precise necessáriamente
