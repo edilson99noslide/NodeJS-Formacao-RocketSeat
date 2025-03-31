@@ -51,6 +51,12 @@ Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 * Writable Streams envia aos poucos um vídeo, uma música (escrita)
 * Trasformable Streams que lê um arquivo e escreve (transformação)
 
+<h3>Síncrono e Assíncrono</h3>
+
+* Async: Garante que uma função será assíncrona, ou seja, não precise necessáriamente
+executar na ordem.
+* Await: Garante que o código seja lido em sequência.
+
 # Utilizações
 
 * Streams Readable: São streams de leitura, elas são classes que estendem
