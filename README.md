@@ -49,7 +49,7 @@ Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 <h3>Readable Streams vs Writable Streams</h3>
 * Readable Streams é quando você lê um arquivo aos poucos (leitura)
 * Writable Streams envia aos poucos um vídeo, uma música (escrita)
-* Trasformable Streams que lê um arquivo e escreve (transformação)
+* Transformable Streams que lê um arquivo e escreve (transformação)
 
 <h3>Síncrono e Assíncrono</h3>
 
