@@ -30,6 +30,6 @@ const server = http.createServer((req, res) => {
     .end(JSON.stringify({'error': 'Recurso não encontrado!'}));
 });
 
-server.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
+server.listen(3333, () => {
+  console.log("Servidor rodando na porta 3333");
 });
