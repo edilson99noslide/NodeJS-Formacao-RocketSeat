@@ -51,12 +51,13 @@ Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 * Writable Streams envia aos poucos um vídeo, uma música (escrita)
 * Transformable Streams que lê um arquivo e escreve (transformação)
 
-<h3>Buffers</h3>
+<h3>Buffer</h3>
+* O Buffer no Node.js é uma API usada para armazenar e manipular dados binários.
 * É uma representação de um espaço na memória do computador usado para transitar dados de uma maneira muito rápida, pois ele lê o dado
-de forma binária, essa maneira é mais rápida do que uma string
+de forma binária, essa maneira é mais rápida do que uma string.
 * São representados por dados hexadecimais, se você criar uma variável buffer com o valor de 
-"Olá!" o console.log() irá retornar a classe Buffer e o valor em hexadecimal
-* Converter um buff para JSON irá retornar um decimal
+"Olá!" o console.log() irá retornar a classe Buffer e o valor em hexadecimal.
+* Converter um buff para JSON irá retornar um decimal.
 ```js
 const buf = Buffer.from("Olá!");
 

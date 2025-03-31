@@ -1,30 +1,22 @@
 import http from 'node:http';
+import { json } from "../middlewares/json.js";
 
 const users = [];
 
 const server = http.createServer(async(req, res) => {
   const { method, url } = req;
 
-  const buffers = [];
-
-  for await(const chunk of req) {
-    buffers.push(chunk);
-  }
-
-  try {
-    req.body = JSON.parse(Buffer.concat(buffers).toString());
-  } catch {
-    req.body = null;
-  }
+  // Middleware
+  await json(req, res);
 
   console.log(`Requisição feita: ${method} ${url}`, req.body);
 
+  // GET
   if(method === 'GET' && url === '/users') {
-    return res
-      .writeHead(200, {'content-type': 'application/json'})
-      .end(JSON.stringify(users));
+    return res.end(JSON.stringify(users));
   }
 
+  // POST
   if(method === 'POST' && url === '/users') {
     const { name, email } = req.body;
 
@@ -37,6 +29,7 @@ const server = http.createServer(async(req, res) => {
     return res.writeHead(201, {'content-type': 'application/json'}).end(JSON.stringify(req.body));
   }
 
+  // 404 de rotas
   return res
     .writeHead(404, {'content-type': 'application/json'})
     .end(JSON.stringify({'error': 'Recurso não encontrado!'}));
