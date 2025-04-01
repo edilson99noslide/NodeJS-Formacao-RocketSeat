@@ -131,3 +131,25 @@ new OneToHundredStream()
   .pipe(new InverseNumberStream())
   .pipe(new MultiplyByTenStream());
 ```
+
+* Como impedir o acesso de propriedades de uma classe, utilize o # antes da propriedade para
+permitir somente acessar os métodos
+```js
+export class Database {
+  #database = {}; // Agora não será mais possível acessar database.database
+
+  select(table){
+    const data = this.#database[table] ?? [];
+
+    return data;
+  }
+
+  insert(table, data){
+    Array.isArray(this.#database[table])
+      ? this.#database[table].push(data)
+      : (this.#database[table] = [data]);
+
+    return data;
+  }
+}
+```
