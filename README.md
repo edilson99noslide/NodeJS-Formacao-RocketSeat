@@ -1,6 +1,6 @@
 # Start Node.js
 
-O servidor fica em src/server.js
+O servidor fica em `src/server.js`
 
 ```js
 // import
@@ -15,69 +15,74 @@ const server = http.createServer((req, res) => {
 server.listen(3333);
 ```
 
-criando um script
+Criando um script no `package.json`:
 
-```
+```json
 "scripts": {
     "dev": "node --watch src/server.js"
-  }
+}
 ```
+
+---
 
 # Conceitos
 
-<h3>Especificar recursos iternos no node</h3>
-* import http from 'node:http';
+### Especificar recursos internos no Node.js
 
-<h3>Stateless vs StateFull</h3>
-* Stateless: Salva em arquivos externos como banco de dados, arquivos de textos e derivados, isso faz com que os dados não se percam ao derrubar e startar a aplicação.
-* StateFull: Salva na memória, então quando o servidor é derrubado esses dados também são, pois dependem da memória e podem em algum momento serem alterados.
+- `import http from 'node:http'`
 
-<h3>Cabeçalhos (Header)</h3>
-* São metadados, ou seja, informações complementares que não tem relação com os dados transitados entre o back e front, ou seja, o corpo da requisição (body)
+### Stateless vs Stateful
 
-Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers
+- **Stateless**: Salva em arquivos externos como banco de dados, arquivos de textos e derivados, garantindo que os dados não se percam ao reiniciar a aplicação.
+- **Stateful**: Salva os dados na memória, então quando o servidor é derrubado esses dados também são perdidos, pois dependem da memória.
 
-<h3>HTTP Status Code</h3>
-* Código 100 - 199: Informativos (não são muito usados, mas servem para indicar alguma informação)
-* Código 200 - 299: Indicam sucesso (200 - ok e 201 - criado com sucesso!)
-* Código 300 - 399: Indicam redirecionamento (301 - rota mudou permanentemente e 302 - rota mudou temporariamente)
-* Código 400 - 499: Indicam erros do lado do cliente (400 - corpo da requisição errada e 404 - recurso não encontrado)
-* Código 500 - 599: Indicam erros do lado do servidor (500 - erro do servidor)
+### Cabeçalhos (Header)
 
-Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+- São metadados, ou seja, informações complementares que não têm relação com os dados transitados entre o backend e frontend.
 
-<h3>Readable Streams vs Writable Streams</h3>
-* Readable Streams é quando você lê um arquivo aos poucos (leitura)
-* Writable Streams envia aos poucos um vídeo, uma música (escrita)
-* Transformable Streams que lê um arquivo e escreve (transformação)
+Referência: [MDN - Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers)
 
-<h3>Buffer</h3>
-* O Buffer no Node.js é uma API usada para armazenar e manipular dados binários.
-* É uma representação de um espaço na memória do computador usado para transitar dados de uma maneira muito rápida, pois ele lê o dado
-de forma binária, essa maneira é mais rápida do que uma string.
-* São representados por dados hexadecimais, se você criar uma variável buffer com o valor de 
-"Olá!" o console.log() irá retornar a classe Buffer e o valor em hexadecimal.
-* Converter um buff para JSON irá retornar um decimal.
+### HTTP Status Code
+
+- **100 - 199**: Informativos.
+- **200 - 299**: Indicam sucesso (ex: `200 OK`, `201 Created`).
+- **300 - 399**: Indicam redirecionamento (ex: `301 Moved Permanently`, `302 Found`).
+- **400 - 499**: Indicam erros do lado do cliente (ex: `400 Bad Request`, `404 Not Found`).
+- **500 - 599**: Indicam erros do lado do servidor (ex: `500 Internal Server Error`).
+
+Referência: [MDN - Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)
+
+### Readable Streams vs Writable Streams
+
+- **Readable Streams**: Permitem leitura de dados aos poucos.
+- **Writable Streams**: Enviam dados de forma progressiva.
+- **Transformable Streams**: Leem e transformam os dados antes de escrever.
+
+### Buffer
+
+- O `Buffer` no Node.js armazena e manipula dados binários.
+- É mais rápido do que manipular strings.
+
 ```js
 const buf = Buffer.from("Olá!");
-
-console.log(buf); 
-
-// retorna <Buffer 4f 6c c3 a1>
+console.log(buf);
+// <Buffer 4f 6c c3 a1>
 // Buffer é a classe e cada elemento é a representação do caractere em hexadecial (base 123456789ABCDEF)
 ```
 
-<h3>Síncrono e Assíncrono</h3>
+### Síncrono e Assíncrono
 
-* Async: Garante que uma função será assíncrona, ou seja, não precise necessáriamente
-executar na ordem.
-* Await: Garante que o código seja lido em sequência.
+- **Async**: Garante que uma função será assíncrona, ou seja, não precise necessáriamente
+  executar na ordem.
+- **Await**: Garante que o código seja lido em sequência.
 
 # Utilizações
 
-* Streams Readable: São streams de leitura, elas são classes que estendem
-de Readable, é obrigatório ter o método _read() nesse método você utiliza
-o this.push(variável) para retornar o valor
+### Streams Readable
+
+- **Streams Readable**: São streams de leitura, elas são classes que estendem
+  de Readable, é obrigatório ter o método _read() nesse método você utiliza
+  o this.push(variável) para retornar o valor
 
 ```js
 class OneToHundredStream extends Readable {
@@ -85,17 +90,19 @@ class OneToHundredStream extends Readable {
 
   _read() {
     const i = this.index++;
-    const buf = Buffer.from(String(i + ', ')); // Saída em Buffer e espera uma string no seu parâmetro
+    const buf = Buffer.from(String(i + ', '));
 
     setTimeout(() => {
-      i > 100 ? this.push(null) : this.push(buf); // this.push(variável) para exibir
+      i > 100 ? this.push(null) : this.push(buf);
     }, 1000);
   }
 }
 ```
 
-* Streams Writable: São streams de escrita somente processa o dado, nunca irá retornar algo (retornar é diferente de printar!),
-ela também tem 3 parâmetros: 
+### Streams Writable
+
+- **Streams Writable**: São streams de escrita somente processa o dado, nunca irá retornar algo (retornar é diferente de printar!),
+  ela também tem 3 parâmetros
 1. chunk - Retorno da escrita
 2. encoding - Como que essa informação da chunk está codificada
 3. callback - Função que será retornada no final da execução
@@ -109,9 +116,11 @@ class MultiplyByTenStream extends Writable {
 }
 ```
 
-* Streams Transformable: São streams de transformação, ela obrigatóriamente 
-precisa realizar uma leitura, trasformar esse dado lido e escrever, ela estende de Transform
-e precisa ter obrigatóriamente o método _transform com os parâmetros:
+### Streams Transformable
+
+- **Streams Transformable**: São streams de transformação, ela obrigatóriamente
+  precisa realizar uma leitura, trasformar esse dado lido e escrever, ela estende de Transform
+  e precisa ter obrigatóriamente o método _transform com os parâmetros
 1. chunk - Retorno da escrita
 2. encoding - Como que a informação da chunk está codificada
 3. callback - Função que será executada no final da execução
@@ -125,42 +134,49 @@ class InverseNumberStream extends Transform {
 }
 ```
 
-* Como executar as streams
+### Como executar as streams
+
 ```js
 new OneToHundredStream()
   .pipe(new InverseNumberStream())
   .pipe(new MultiplyByTenStream());
 ```
 
-* Como impedir o acesso de propriedades de uma classe, utilize o # antes da propriedade para
+### Protegendo propriedades de uma classe
+
+- **Como impedir o acesso de propriedades de uma classe**: Utilize o # antes da propriedade para
 permitir somente acessar os métodos
+
 ```js
 export class Database {
-  #database = {}; // Agora não será mais possível acessar database.database
+  #database = {}; // Agora não será mais possível acessar diretamente
 
-  select(table){
-    const data = this.#database[table] ?? [];
-
-    return data;
+  select(table) {
+    return this.#database[table] ?? [];
   }
 
-  insert(table, data){
+  insert(table, data) {
     Array.isArray(this.#database[table])
       ? this.#database[table].push(data)
       : (this.#database[table] = [data]);
-
     return data;
   }
 }
 ```
 
-* Biblioteca fs/promises é utilizada para manipular arquivos, a fs/primises é mais "atual" do que
-a fs antiga, mas para lidar com streams deve-se usar somente a lib fs.
+### Manipulação de arquivos com `fs/promises`
+
+- **Biblioteca fs/promises**: É utilizada para manipular arquivos, a fs/primises é mais "atual" do que
+  a fs antiga, mas para lidar com streams deve-se usar somente a lib fs.
+
 ```js
 import fs from 'node:fs/promises';
 ```
 
-* Biblioteca para id únicos aleatórios randomUUID - Identificador Único Universal (Universally unique identifier)
+### Gerando UUIDs com `crypto`
+
+- **Biblioteca para id únicos aleatórios randomUUID**: Identificador Único Universal (Universally unique identifier)
+
 ```js
 import { randomUUID } from 'node:crypto';
 ```
