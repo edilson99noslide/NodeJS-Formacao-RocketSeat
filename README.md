@@ -153,3 +153,6 @@ export class Database {
   }
 }
 ```
+
+* Biblioteca fs/promises é utilizada para manipular arquivos, a fs/primises é mais "atual" do que
+a fs antiga, mas para lidar com streams deve-se usar somente a lib fs.
