@@ -26,23 +26,23 @@ criando um script
 # Conceitos
 
 <h3>Especificar recursos iternos no node</h3>
-- import http from 'node:http';
+* import http from 'node:http';
 
 <h3>Stateless vs StateFull</h3>
-- Stateless: Salva em arquivos externos como banco de dados, arquivos de textos e derivados, isso faz com que os dados não se percam ao derrubar e startar a aplicação.
-- StateFull: Salva na memória, então quando o servidor é derrubado esses dados também são, pois dependem da memória e podem em algum momento serem alterados.
+* Stateless: Salva em arquivos externos como banco de dados, arquivos de textos e derivados, isso faz com que os dados não se percam ao derrubar e startar a aplicação.
+* StateFull: Salva na memória, então quando o servidor é derrubado esses dados também são, pois dependem da memória e podem em algum momento serem alterados.
 
 <h3>Cabeçalhos (Header)</h3>
-- São metadados, ou seja, informações complementares que não tem relação com os dados transitados entre o back e front, ou seja, o corpo da requisição (body)
+* São metadados, ou seja, informações complementares que não tem relação com os dados transitados entre o back e front, ou seja, o corpo da requisição (body)
 
 Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers
 
 <h3>HTTP Status Code</h3>
-* Código <span style="color: white;">100 - 199</span>: Informativos (não são muito usados, mas servem para indicar alguma informação)
-* Código <span style="color: green;">200 - 299</span>: Indicam sucesso (200 - ok e 201 - criado com sucesso!)
-* Código <span style="color: yellow;">300 - 399</span>: Indicam redirecionamento (301 - rota mudou permanentemente e 302 - rota mudou temporariamente)
-* Código <span style="color: orange;">400 - 499</span>: Indicam erros do lado do cliente (400 - corpo da requisição errada e 404 - recurso não encontrado)
-* Código <span style="color: red;">500 - 599</span>: Indicam erros do lado do servidor (500 - erro do servidor)
+* Código 100 - 199: Informativos (não são muito usados, mas servem para indicar alguma informação)
+* Código 200 - 299: Indicam sucesso (200 - ok e 201 - criado com sucesso!)
+* Código 300 - 399: Indicam redirecionamento (301 - rota mudou permanentemente e 302 - rota mudou temporariamente)
+* Código 400 - 499: Indicam erros do lado do cliente (400 - corpo da requisição errada e 404 - recurso não encontrado)
+* Código 500 - 599: Indicam erros do lado do servidor (500 - erro do servidor)
 
 Referencia: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 
@@ -156,3 +156,11 @@ export class Database {
 
 * Biblioteca fs/promises é utilizada para manipular arquivos, a fs/primises é mais "atual" do que
 a fs antiga, mas para lidar com streams deve-se usar somente a lib fs.
+```js
+import fs from 'node:fs/promises';
+```
+
+* Biblioteca para id únicos aleatórios randomUUID - Identificador Único Universal (Universally unique identifier)
+```js
+import { randomUUID } from 'node:crypto';
+```
