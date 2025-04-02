@@ -9,7 +9,13 @@ export const routes = [
     method: "GET",
     path: buildRoutePath("/users"),
     handler: async (request, response) => {
-      const users = database.select('users');
+      const { search } = request.query;
+      const searchParams = search ? {
+        name: search,
+        email: search
+      } : null;
+
+      const users = database.select('users', searchParams);
 
       return response.end(JSON.stringify(users));
     }
