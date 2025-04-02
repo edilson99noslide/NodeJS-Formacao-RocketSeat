@@ -76,6 +76,19 @@ console.log(buf);
   executar na ordem.
 - **Await**: Garante que o código seja lido em sequência.
 
+### Request
+
+- **Query parameters**: URL Stateful, são filtros, paginação, não obrigatórios `url/api/user?search=admin`
+- **Route parameters**: Identificação de recurso, identificação de um dado de entidade `url/api/user/1`
+- **Body**: Corpo da requisição com os dados
+
+```json
+{
+  "name": "Admin",
+  "email": "admin@gmail.com"
+}
+```
+
 # Utilizações
 
 ### Streams Readable
