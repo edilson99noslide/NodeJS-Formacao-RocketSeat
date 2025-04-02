@@ -9,8 +9,6 @@ const server = http.createServer(async(request, response) => {
   // Middleware
   await json(request, response);
 
-  console.log(`request feita: ${method} ${url}`, request.body);
-
   const route = routes.find(route => {
     return route.method === method && route.path.test(url);
   });

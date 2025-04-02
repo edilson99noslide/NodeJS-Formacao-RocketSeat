@@ -49,7 +49,7 @@ export const routes = [
         email
       });
 
-      return response.writeHead(200).end();
+      return response.writeHead(200, {'content-type': 'application/json'}).end(JSON.stringify(request.body));
     }
   },
   {
