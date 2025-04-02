@@ -18,7 +18,6 @@ export const routes = [
     method: "POST",
     path: buildRoutePath("/user"),
     handler: async (request, response) => {
-      console.log('POST');
       const { name, email } = request.body;
 
       const user = {
